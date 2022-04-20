@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Errors: Error {
     case noUrl
@@ -57,6 +58,14 @@ class NetworkManager {
                 completion(.failure(.cantDecode))
             }
         }.resume()
+    }
+    
+    func fetchImage(from string: String, completion: @escaping(UIImage) -> Void) {
+        guard let url = URL(string: string) else { return }
+        let data = try? Data(contentsOf: url)
+        guard let data = data else { return }
+        guard let image = UIImage(data: data) else { return }
+        completion(image)
     }
     
     private init(){}

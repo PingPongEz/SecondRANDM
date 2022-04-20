@@ -23,7 +23,7 @@ struct Welcome: Codable {
 
 //MARK: Characters
 struct Chars: Codable {
-    let info: Info
+    let info: Info?
     let results: [Character]
 }
 
@@ -33,13 +33,13 @@ struct Info: Codable {
     let count: Int
     let pages: Int
     let next: String
-    let prev: String
+    let prev: String?
     
     init(value: [String: Any]) {
         count = value["count"] as! Int
         pages = value["pages"] as! Int
         next = value["next"] as! String
-        prev = value["prev"] as! String
+        prev = value["prev"] as? String
     }
     
 }

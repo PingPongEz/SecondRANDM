@@ -18,6 +18,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = 110
+        
         print(charactersLink)
         fetchCaracters()
     }
@@ -35,6 +37,7 @@ class TableViewController: UITableViewController {
 
         
         cell.setValuesForCell(from: character)
+        
         
         return cell
     }
@@ -63,7 +66,6 @@ extension TableViewController {
                 self.rickAndMorty = chars
                 self.tableView.reloadData()
             case .failure(let error):
-                print(1)
                 print(error)
             }
         }

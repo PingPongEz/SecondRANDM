@@ -13,11 +13,18 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var species: UILabel!
     @IBOutlet weak var isAlive: UILabel!
     
-    
+    @IBOutlet weak var picture: UIImageView! {
+        didSet {
+            
+            self.picture.contentMode = .scaleAspectFill
+            
+            self.picture.layer.cornerRadius = self.picture.frame.height / 2
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //mark
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,5 +36,17 @@ class TableViewCell: UITableViewCell {
         self.fullName.text = character.name
         self.species.text = character.species
         self.isAlive.text = character.status
+        
+        NetworkManager.shared.fetchImage(from: character.image) { image in
+            self.picture.image = image
+        }
+        
+        if character.status == "Alive" {
+            self.isAlive.textColor = .green
+        } else if character.status == "Dead" {
+            self.isAlive.textColor = .red
+        } else {
+            self.isAlive.textColor = .gray
+        }
     }
 }
