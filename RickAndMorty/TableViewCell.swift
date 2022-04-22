@@ -8,12 +8,12 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var fullName: UILabel!
     @IBOutlet weak var species: UILabel!
     @IBOutlet weak var isAlive: UILabel!
     
-    @IBOutlet weak var picture: UIImageView! {
+    @IBOutlet weak var picture: CachedImage! {
         didSet {
             
             self.picture.contentMode = .scaleAspectFill
@@ -26,20 +26,18 @@ class TableViewCell: UITableViewCell {
         super.awakeFromNib()
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
-
+    
     func setValuesForCell(from character: Character) {
+        
         self.fullName.text = character.name
         self.species.text = character.species
         self.isAlive.text = character.status
         
-        NetworkManager.shared.fetchImage(from: character.image) { image in
-            self.picture.image = image
-        }
         
         if character.status == "Alive" {
             self.isAlive.textColor = .green
@@ -48,5 +46,12 @@ class TableViewCell: UITableViewCell {
         } else {
             self.isAlive.textColor = .gray
         }
+        
+    }
+    
+    func setPics(from character: Character) {
+        
+        self.picture.fetchImage(from: character.image)
+        
     }
 }

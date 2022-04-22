@@ -42,6 +42,7 @@ class NetworkManager {
         guard let url = URL(string: stringUrl) else { completion(.failure(.noUrl)); return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
+            
             guard let data = data else {
                 completion(.failure(.noData))
                 return
@@ -57,15 +58,23 @@ class NetworkManager {
                 print("no")
                 completion(.failure(.cantDecode))
             }
+            
         }.resume()
     }
     
-    func fetchImage(from string: String, completion: @escaping(UIImage) -> Void) {
-        guard let url = URL(string: string) else { return }
-        let data = try? Data(contentsOf: url)
-        guard let data = data else { return }
-        guard let image = UIImage(data: data) else { return }
-        completion(image)
+    func fetchImage(from string: URL, completion: @escaping(Data, URLResponse) -> Void) {
+        URLSession.shared.dataTask(with: string) { data, response, error in
+            guard let data = data, let responce = response else {
+                print(error?.localizedDescription ?? "No")
+                return
+            }
+            
+            guard string == responce.url else { return }
+            DispatchQueue.main.async {
+                completion(data, responce)
+            }
+            
+        }.resume()
     }
     
     private init(){}

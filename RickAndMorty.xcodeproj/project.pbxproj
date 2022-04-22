@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0937CA8B2811AA9A002C7423 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937CA8A2811AA9A002C7423 /* CachedImage.swift */; };
 		0973CD87280F0F0D0031892B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0973CD86280F0F0D0031892B /* Network.swift */; };
 		0973CD89280F12DF0031892B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0973CD88280F12DF0031892B /* TableViewController.swift */; };
 		0973CD8B280F147F0031892B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0973CD8A280F147F0031892B /* TableViewCell.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0937CA8A2811AA9A002C7423 /* CachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		0973CD86280F0F0D0031892B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		0973CD88280F12DF0031892B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0973CD8A280F147F0031892B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				09813F8A280DBD9F009C3830 /* ViewController.swift */,
 				09813F8C280DBD9F009C3830 /* Main.storyboard */,
 				0973CD88280F12DF0031892B /* TableViewController.swift */,
+				0937CA8A2811AA9A002C7423 /* CachedImage.swift */,
 				09813F8F280DBDA5009C3830 /* Assets.xcassets */,
 				09813F91280DBDA5009C3830 /* LaunchScreen.storyboard */,
 				09813F94280DBDA5009C3830 /* Info.plist */,
@@ -277,6 +280,7 @@
 				09813F89280DBD9F009C3830 /* SceneDelegate.swift in Sources */,
 				0973CD8B280F147F0031892B /* TableViewCell.swift in Sources */,
 				09813FB7280DBE52009C3830 /* R&MModel.swift in Sources */,
+				0937CA8B2811AA9A002C7423 /* CachedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
