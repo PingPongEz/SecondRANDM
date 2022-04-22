@@ -7,7 +7,11 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+protocol getRickAndMorty {
+    func getRickAndMorty(chars: Chars)
+}
+
+class TableViewController: UITableViewController, getRickAndMorty {
     
     private var rickAndMorty: Chars?
     
@@ -18,7 +22,11 @@ class TableViewController: UITableViewController {
         
         tableView.rowHeight = 110
         
-        fetchCaracters(with: charactersLink)
+        loadModel(with: ".key")
+        
+        if rickAndMorty == nil {
+            fetchCaracters(with: charactersLink)
+        }
     }
     
     // MARK: - Table view data source
@@ -39,23 +47,51 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func nextPagePressed(_ sender: UIBarButtonItem) {
-        
-        guard let nextLink = rickAndMorty?.info?.next else { return }
-        fetchCaracters(with: nextLink)
+        DispatchQueue.global().async {
+            guard let nextLink = self.rickAndMorty?.info?.next else { return }
+            self.fetchCaracters(with: nextLink)
+        }
     }
     
     @IBAction func pervousPagePressed(_ sender: UIBarButtonItem) {
-        
-        guard let pervLink = rickAndMorty?.info?.prev else { return }
-        fetchCaracters(with: pervLink)
+        DispatchQueue.global().sync {
+            
+            guard let pervLink = rickAndMorty?.info?.prev else { return }
+            
+            self.fetchCaracters(with: pervLink)
+            
+        }
         
     }
+    
     
 }
 
 extension TableViewController {
     
     private func fetchCaracters(with link: String) {
+        
+        guard let nextPage = rickAndMorty?.info?.next else { return }
+        
+        if SaveChars.getChar(with: nextPage + ".key") != nil {
+            loadModel(with: nextPage + ".key")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            print(1)
+            return
+        } else if SaveChars.getChar(with: nextPage + ".key") != nil {
+            loadModel(with: nextPage + ".key")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            print(1)
+            return
+        }
+        
+        
+        
+        
         NetworkManager.shared.fetchChars(from: link) { result in
             switch result {
             case .success(let chars):
@@ -65,5 +101,15 @@ extension TableViewController {
                 print(error)
             }
         }
+    }
+    
+    private func loadModel(with: String) {
+        rickAndMorty = SaveChars.getChar(with: with)
+    }
+}
+
+extension TableViewController {
+    func getRickAndMorty(chars: Chars) {
+        rickAndMorty = chars
     }
 }

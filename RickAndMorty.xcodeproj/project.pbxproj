@@ -21,6 +21,7 @@
 		09813FA8280DBDA6009C3830 /* RickAndMortyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09813FA7280DBDA6009C3830 /* RickAndMortyUITests.swift */; };
 		09813FAA280DBDA6009C3830 /* RickAndMortyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09813FA9280DBDA6009C3830 /* RickAndMortyUITestsLaunchTests.swift */; };
 		09813FB7280DBE52009C3830 /* R&MModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09813FB6280DBE52009C3830 /* R&MModel.swift */; };
+		09F529092812FE7A005782DC /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F529082812FE7A005782DC /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		09813FA7280DBDA6009C3830 /* RickAndMortyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyUITests.swift; sourceTree = "<group>"; };
 		09813FA9280DBDA6009C3830 /* RickAndMortyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09813FB6280DBE52009C3830 /* R&MModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R&MModel.swift"; sourceTree = "<group>"; };
+		09F529082812FE7A005782DC /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				0973CD8A280F147F0031892B /* TableViewCell.swift */,
 				0973CD86280F0F0D0031892B /* Network.swift */,
+				09F529082812FE7A005782DC /* UserDefaults.swift */,
 				09813FB6280DBE52009C3830 /* R&MModel.swift */,
 				09813F86280DBD9F009C3830 /* AppDelegate.swift */,
 				09813F88280DBD9F009C3830 /* SceneDelegate.swift */,
@@ -278,6 +281,7 @@
 				09813F8B280DBD9F009C3830 /* ViewController.swift in Sources */,
 				09813F87280DBD9F009C3830 /* AppDelegate.swift in Sources */,
 				09813F89280DBD9F009C3830 /* SceneDelegate.swift in Sources */,
+				09F529092812FE7A005782DC /* UserDefaults.swift in Sources */,
 				0973CD8B280F147F0031892B /* TableViewCell.swift in Sources */,
 				09813FB7280DBE52009C3830 /* R&MModel.swift in Sources */,
 				0937CA8B2811AA9A002C7423 /* CachedImage.swift in Sources */,

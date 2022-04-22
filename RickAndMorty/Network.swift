@@ -15,6 +15,9 @@ enum Errors: Error {
 }
 
 class NetworkManager {
+    
+    var delegate: getRickAndMorty!
+    
     static var shared = NetworkManager()
     
     func fetchData(from string: String?, completion: @escaping(Result<Welcome, Errors>) -> Void) {
@@ -40,23 +43,22 @@ class NetworkManager {
     func fetchChars(from string: String?, completion: @escaping(Result<Chars, Errors>) -> Void) {
         guard let stringUrl = string else { completion(.failure(.noUrl)); return }
         guard let url = URL(string: stringUrl) else { completion(.failure(.noUrl)); return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            
-            guard let data = data else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                print("decoding")
-                let data = try JSONDecoder().decode(Chars.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(data))
+        DispatchQueue.global().sync {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data, let response = response else {
+                    completion(.failure(.noData))
+                    return
                 }
-            } catch {
-                print("no")
-                completion(.failure(.cantDecode))
+                
+                do {
+                    let characters = try JSONDecoder().decode(Chars.self, from: data)
+                    DispatchQueue.main.async {
+                        SaveChars.saveChar(char: characters)
+                        completion(.success(characters))
+                    }
+                } catch {
+                    completion(.failure(.cantDecode))
+                }
             }
             
         }.resume()

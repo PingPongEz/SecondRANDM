@@ -25,6 +25,11 @@ struct Welcome: Codable {
 struct Chars: Codable {
     let info: Info?
     let results: [Character]
+    
+    init() {
+        info = Info()
+        results = []
+    }
 }
 
 
@@ -35,11 +40,26 @@ struct Info: Codable {
     let next: String
     let prev: String?
     
+    var key: String {
+        guard let prev = prev else {
+            return ".key"
+        }
+        
+        return prev + ".key"
+    }
+    
     init(value: [String: Any]) {
         count = value["count"] as! Int
         pages = value["pages"] as! Int
         next = value["next"] as! String
         prev = value["prev"] as? String
+    }
+    
+    init() {
+        count = 0
+        pages = 0
+        next = "NO"
+        prev = "NO"
     }
     
 }

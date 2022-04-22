@@ -9,9 +9,13 @@ import UIKit
 
 class CachedImage: UIImageView {
     
+    
     func fetchImage(from string: String) {
+        
+        image = UIImage(named: "noImage")
+        
         guard let url = URL(string: string) else {
-            image = UIImage(systemName: "questionmark.square.dashed")
+            image = UIImage(named: "noImage")
             image?.withTintColor(.gray)
             return
         }
